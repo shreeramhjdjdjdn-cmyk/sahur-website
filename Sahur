@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sahur Chubra | The Legend 👑</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #070011;
+    color: white;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+/* ANIMATED BACKGROUND */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, #7900ff55, transparent 35%),
+      radial-gradient(circle at 80% 70%, #ff008855, transparent 35%);
+    animation: bgMove 8s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes bgMove {
+    from { filter: hue-rotate(0deg); }
+    to { filter: hue-rotate(90deg); }
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    padding: 65px 20px;
+}
+
+.crown {
+    font-size: 75px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    50% { transform: translateY(-20px); }
+}
+
+h1 {
+    font-size: clamp(38px, 9vw, 75px);
+    background: linear-gradient(
+        90deg,
+        #ffcc00,
+        #ff00cc,
+        #00ffff
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 35px #ff00aa55;
+    margin: 20px 0;
+}
+
+.subtitle {
+    font-size: 19px;
+    color: #ccc;
+}
+
+/* 3D PHOTO */
+
+.photo-container {
+    perspective: 1000px;
+    margin: 50px auto;
+    width: 270px;
+    height: 320px;
+}
+
+.photo-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    padding: 7px;
+    background: linear-gradient(
+        45deg,
+        gold,
+        #ff00ff,
+        cyan,
+        gold
+    );
+    box-shadow:
+        0 0 30px #ff00ff,
+        0 0 70px #6600ff;
+    animation: float3D 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+@keyframes float3D {
+    0%,100% {
+        transform: rotateY(-12deg)
+                   rotateX(5deg)
+                   translateY(0);
+    }
+    50% {
+        transform: rotateY(12deg)
+                   rotateX(-5deg)
+                   translateY(-20px);
+    }
+}
+
+/* BADGE */
+
+.badge {
+    display: inline-block;
+    background: linear-gradient(45deg,#ff0088,#7700ff);
+    padding: 13px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 0 25px #ff00aa;
+    margin: 15px;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 75px 20px;
+}
+
+.section-title {
+    font-size: clamp(28px, 7vw, 42px);
+    margin-bottom: 35px;
+    color: #ffdd00;
+}
+
+/* GLASS CARDS */
+
+.card {
+    max-width: 650px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #ffffff12;
+    border: 1px solid #ffffff33;
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 40px #0008;
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-10px) rotateX(4deg);
+    border-color: #ff00ff;
+    box-shadow: 0 0 30px #ff00ff66;
+}
+
+.card h2 {
+    color: #00ffff;
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+/* MESSAGE */
+
+.message {
+    font-size: clamp(21px, 5vw, 30px);
+    font-weight: bold;
+    color: #ffdd00;
+    line-height: 1.7;
+}
+
+/* BUTTONS */
+
+button {
+    background: linear-gradient(45deg,#ff0088,#7700ff);
+    border: none;
+    color: white;
+    padding: 17px 30px;
+    margin: 12px;
+    border-radius: 50px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 25px #ff00aa66;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px #ff00aa;
+}
+
+/* ACHIEVEMENTS */
+
+.achievements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+    max-width: 950px;
+    margin: auto;
+}
+
+.achievement {
+    background: linear-gradient(145deg,#250044,#110022);
+    padding: 35px 20px;
+    border-radius: 25px;
+    border: 1px solid #aa00ff;
+    box-shadow: 0 10px 30px #0008;
+    transition: 0.4s;
+}
+
+.achievement:hover {
+    transform: translateY(-12px) rotateY(8deg);
+}
+
+.achievement .icon {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+/* FLOATING EMOJIS */
+
+.emoji {
+    position: fixed;
+    font-size: 30px;
+    pointer-events: none;
+    z-index: 100;
+    animation: fly 4s linear forwards;
+}
+
+@keyframes fly {
+    from {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* POPUP */
+
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000c;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.popup-box {
+    background: linear-gradient(135deg,#400070,#17002d);
+    padding: 40px 25px;
+    border-radius: 30px;
+    border: 2px solid gold;
+    box-shadow: 0 0 60px #ff00ff;
+    max-width: 420px;
+    width: 100%;
+    animation: popupIn 0.5s;
+}
+
+@keyframes popupIn {
+    from { transform: scale(0) rotate(-20deg); }
+    to { transform: scale(1) rotate(0); }
+}
+
+.popup-box h2 {
+    color: gold;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.popup-box p {
+    font-size: 21px;
+    line-height: 1.7;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 35px;
+    background: #0008;
+    color: #aaa;
+}
+
+footer span {
+    color: #ffdd00;
+}
+
+@media(max-width:500px) {
+    .photo-container {
+        width: 235px;
+        height: 285px;
+    }
+
+    .hero {
+        padding-top: 45px;
+    }
+
+    section {
+        padding: 55px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<div class="hero">
+
+    <div class="crown">👑</div>
+
+    <h1>SAHUR CHUBRA</h1>
+
+    <p class="subtitle">
+        The Man • The Myth • The Legend
+    </p>
+
+    <div class="photo-container">
+        <div class="photo-card">
+            <img src="sahur.jpg" alt="Sahur Chubra">
+        </div>
+    </div>
+
+    <div class="badge">
+        🔥 Official Legend of Ghose Para 🔥
+    </div>
+
+    <br>
+
+    <button onclick="showPopup()">
+        🚨 DO NOT CLICK
+    </button>
+
+    <br>
+
+    <button onclick="document.getElementById('family').scrollIntoView({behavior:'smooth'})">
+        👇 Explore The Legend
+    </button>
+
+</div>
+
+<!-- FAMILY -->
+
+<section id="family">
+
+    <h2 class="section-title">
+        👑 THE ROYAL FAMILY 👑
+    </h2>
+
+    <div class="card">
+        <h2>😎 The Superstar</h2>
+        <p>
+            Name: <b>Sahur Chubra</b>
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>🗿 The Legendary Father</h2>
+        <p>
+            Father's Name: <b>Akash</b>
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>💃 The Bollywood Mother</h2>
+        <p>
+            Mother's Name: <b>Prianka Chopra</b>
+        </p>
+    </div>
+
+</section>
+
+<!-- MESSAGE -->
+
+<section>
+
+    <h2 class="section-title">
+        📜 OFFICIAL DECLARATION
+    </h2>
+
+    <div class="card">
+
+        <div style="font-size:55px;margin-bottom:20px">
+            📢
+        </div>
+
+        <p class="message">
+            "ami Akash er ekmatro sontan,
+            sobar bhaipo,
+            ghose parar jamai"
+        </p>
+
+        <br>
+
+        <p>
+            — Sahur Chubra, 2026 👑
+        </p>
+
+    </div>
+
+    <button onclick="speakMessage()">
+        🔊 Hear The Declaration
+    </button>
+
+</section>
+
+<!-- ACHIEVEMENTS -->
+
+<section>
+
+    <h2 class="section-title">
+        🏆 LEGENDARY ACHIEVEMENTS
+    </h2>
+
+    <div class="achievements">
+
+        <div class="achievement">
+            <div class="icon">👑</div>
+            <h2>Royal Blood</h2>
+            <p>Akash er ekmatro sontan</p>
+        </div>
+
+        <div class="achievement">
+            <div class="icon">😎</div>
+            <h2>Universal Bhaipo</h2>
+            <p>Sobar priyo bhaipo</p>
+        </div>
+
+        <div class="achievement">
+            <div class="icon">💍</div>
+            <h2>Ghose Para Legend</h2>
+            <p>Official Jamai</p>
+        </div>
+
+        <div class="achievement">
+            <div class="icon">🔥</div>
+            <h2>Unlimited Swag</h2>
+            <p>Swag Level: 999999+</p>
+        </div>
+
+        <div class="achievement">
+            <div class="icon">🗿</div>
+            <h2>Sigma Award</h2>
+            <p>Certified Legendary Human</p>
+        </div>
+
+        <div class="achievement">
+            <div class="icon">😂</div>
+            <h2>Comedy King</h2>
+            <p>100% Entertainment Guaranteed</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FUN ZONE -->
+
+<section>
+
+    <h2 class="section-title">
+        😂 SAHUR FUN ZONE
+    </h2>
+
+    <div class="card">
+
+        <h2>⚡ Test Sahur's Power</h2>
+
+        <p>
+            Click the button to discover
+            his legendary power!
+        </p>
+
+        <button onclick="powerTest()">
+            ⚡ POWER TEST
+        </button>
+
+        <h2 id="powerResult"></h2>
+
+    </div>
+
+    <div class="card">
+
+        <h2>💌 Special Message</h2>
+
+        <p>
+            A secret message from
+            the legend himself!
+        </p>
+
+        <button onclick="randomMessage()">
+            😂 REVEAL SECRET
+        </button>
+
+        <h2 id="secretResult"></h2>
+
+    </div>
+
+    <div class="card">
+
+        <h2>🎉 Party Mode</h2>
+
+        <p>
+            Celebrate the legend!
+        </p>
+
+        <button onclick="partyMode()">
+            🎊 START PARTY
+        </button>
+
+    </div>
+
+</section>
+
+<!-- FINAL -->
+
+<section>
+
+    <h2 class="section-title">
+        👑 THE FINAL VERDICT
+    </h2>
+
+    <div class="card">
+
+        <h2>
+            SAHUR CHUBRA
+        </h2>
+
+        <p>
+            Ekta naam noy...
+            Ekta Emotion! 😂
+        </p>
+
+        <p>
+            Ghose Parar Gorbo 🏆
+        </p>
+
+        <br>
+
+        <button onclick="shareWebsite()">
+            📤 SHARE THE LEGEND
+        </button>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © 2026 Sahur Chubra Universe
+    </p>
+
+    <br>
+
+    <p>
+        Made with 😂 for
+        <span>The Legendary Bhaipo</span>
+    </p>
+
+    <p>
+        All Rights Reserved by Ghose Para 👑
+    </p>
+
+</footer>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+    <div class="popup-box">
+
+        <h2>🚨 BREAKING NEWS 🚨</h2>
+
+        <p>
+            Congratulations! 🎉
+            <br><br>
+            You have officially entered
+            the legendary universe of
+            <b>SAHUR CHUBRA!</b>
+            <br><br>
+            😂 Ghose Parar Jamai Supremacy!
+        </p>
+
+        <button onclick="closePopup()">
+            😂 CLOSE
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+/* POPUP */
+
+function showPopup() {
+    document.getElementById("popup").style.display = "flex";
+    confetti();
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+/* POWER TEST */
+
+function powerTest() {
+
+    const powers = [
+        "🔥 Power Level: 999999%",
+        "👑 Royal Power: INFINITE",
+        "😂 Comedy Power: MAXIMUM",
+        "🗿 Sigma Energy: UNLIMITED",
+        "⚡ Ghose Para Power: 1000000%",
+        "😎 Bhaipo Power: LEGENDARY"
+    ];
+
+    let random = Math.floor(Math.random()*powers.length);
+
+    document.getElementById("powerResult").innerText =
+        powers[random];
+
+    confetti();
+}
+
+/* RANDOM MESSAGE */
+
+function randomMessage() {
+
+    const messages = [
+        "😂 Ami Akash er ekmatro sontan!",
+        "👑 Ami Ghose Parar Jamai!",
+        "😎 Ami Sobar Bhaipo!",
+        "🔥 Sahur Chubra Never Loses!",
+        "🗿 Legend Never Dies!",
+        "💀 Sahur Chubra Supremacy!"
+    ];
+
+    let random = Math.floor(Math.random()*messages.length);
+
+    document.getElementById("secretResult").innerText =
+        messages[random];
+
+    confetti();
+}
+
+/* VOICE MESSAGE */
+
+function speakMessage() {
+
+    if (!("speechSynthesis" in window)) {
+        alert("Voice not supported!");
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    let speech = new SpeechSynthesisUtterance(
+        "Ami Akash er ekmatro sontan, sobar bhaipo, ghose parar jamai"
+    );
+
+    speech.rate = 0.85;
+    speech.pitch = 1.2;
+
+    speechSynthesis.speak(speech);
+}
+
+/* CONFETTI */
+
+function confetti() {
+
+    const emojis = ["😂","👑","🔥","🎉","💀","😎","💍"];
+
+    for(let i=0;i<35;i++) {
+
+        let emoji = document.createElement("div");
+
+        emoji.className = "emoji";
+
+        emoji.innerText =
+            emojis[Math.floor(Math.random()*emojis.length)];
+
+        emoji.style.left =
+            Math.random()*100+"vw";
+
+        emoji.style.bottom = "-50px";
+
+        emoji.style.animationDuration =
+            (2+Math.random()*3)+"s";
+
+        document.body.appendChild(emoji);
+
+        setTimeout(()=>{
+            emoji.remove();
+        },5000);
+
+    }
+}
+
+/* PARTY MODE */
+
+function partyMode() {
+
+    confetti();
+
+    document.body.style.animation =
+        "partyColors 0.4s infinite";
+
+    const style = document.createElement("style");
+
+    style.innerHTML = `
+        @keyframes partyColors {
+            0% {filter:hue-rotate(0deg);}
+            50% {filter:hue-rotate(180deg);}
+            100% {filter:hue-rotate(360deg);}
+        }
+    `;
+
+    document.head.appendChild(style);
+
+    setTimeout(()=>{
+        document.body.style.animation = "";
+        style.remove();
+    },5000);
+}
+
+/* SHARE */
+
+async function shareWebsite() {
+
+    if(navigator.share) {
+
+        try {
+            await navigator.share({
+                title:"Sahur Chubra 👑",
+                text:"Meet the legendary Sahur Chubra 😂",
+                url:window.location.href
+            });
+        } catch(e) {}
+
+    } else {
+
+        try {
+            await navigator.clipboard.writeText(
+                window.location.href
+            );
+            alert("Website link copied! 😂");
+        } catch(e) {
+            alert("Copy the website link from your browser!");
+        }
+
+    }
+}
+
+/* AUTO FLOATING EMOJIS */
+
+setInterval(()=>{
+
+    const emojis = ["👑","😂","🔥","✨"];
+
+    let emoji = document.createElement("div");
+
+    emoji.className = "emoji";
+
+    emoji.innerText =
+        emojis[Math.floor(Math.random()*emojis.length)];
+
+    emoji.style.left =
+        Math.random()*100+"vw";
+
+    emoji.style.bottom = "-50px";
+
+    emoji.style.fontSize =
+        (20+Math.random()*20)+"px";
+
+    document.body.appendChild(emoji);
+
+    setTimeout(()=>{
+        emoji.remove();
+    },5000);
+
+},1800);
+
+</script>
+
+</body>
+</html>
