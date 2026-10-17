@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080810">
+
+<title>Sahur Chubra | The Ultimate Legend</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --gold: #ffd36b;
+    --purple: #a855f7;
+    --cyan: #39e8ff;
+    --pink: #ff3b9d;
+    --dark: #080810;
+    --glass: rgba(255,255,255,0.055);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--dark);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+canvas {
+    display: block;
+}
+
+#universe {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    pointer-events: none;
+}
+
+.background-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(115,40,220,.22),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 65%,
+            rgba(255,30,120,.13),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(0,200,255,.12),
+            transparent 45%
+        );
+    animation: backgroundMove 12s infinite alternate;
+}
+
+@keyframes backgroundMove {
+    0% {
+        filter: hue-rotate(0deg);
+        transform: scale(1);
+    }
+    100% {
+        filter: hue-rotate(65deg);
+        transform: scale(1.15);
+    }
+}
+
+/* NAVIGATION */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    background: rgba(5,5,15,.55);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 19px;
+    color: var(--gold);
+    text-shadow: 0 0 20px #ffb70070;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    margin-left: 20px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    padding: 125px 20px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold),
+        transparent
+    );
+}
+
+.eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 5px;
+    font-size: 11px;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(39px, 8vw, 105px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    background: linear-gradient(
+        110deg,
+        #fff4c7,
+        #ffca47,
+        #ffffff,
+        #ffab00,
+        #fff4c7
+    );
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: goldShine 7s linear infinite;
+    filter: drop-shadow(0 0 25px #ffb30035);
+}
+
+@keyframes goldShine {
+    from { background-position: 0%; }
+    to { background-position: 300%; }
+}
+
+.hero-subtitle {
+    margin-top: 20px;
+    color: #bbb;
+    letter-spacing: 4px;
+    font-size: 13px;
+}
+
+/* CINEMATIC 3D PHOTO */
+
+.photo-scene {
+    width: 310px;
+    height: 390px;
+    perspective: 1200px;
+    margin: 65px auto 45px;
+    position: relative;
+}
+
+.photo-aura {
+    position: absolute;
+    inset: -45px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255,190,50,.28),
+        rgba(150,0,255,.13),
+        transparent 70%
+    );
+    filter: blur(30px);
+    animation: auraPulse 4s infinite alternate;
+}
+
+@keyframes auraPulse {
+    from {
+        transform: scale(.85);
+        opacity: .6;
+    }
+    to {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+.photo-float {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%,100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-23px);
+    }
+}
+
+.photo-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    padding: 6px;
+    background: linear-gradient(
+        135deg,
+        #fff6bb,
+        #ffb900,
+        #6a3b00,
+        #fff1a0
+    );
+    box-shadow:
+        0 0 35px rgba(255,190,0,.3),
+        0 30px 90px rgba(0,0,0,.8);
+    transform-style: preserve-3d;
+    transition: transform .12s ease-out;
+    overflow: hidden;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 23px;
+    display: block;
+}
+
+.photo-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        115deg,
+        transparent 30%,
+        rgba(255,255,255,.27) 48%,
+        transparent 65%
+    );
+    transform: translateX(-130%);
+    animation: photoShine 5s infinite;
+    pointer-events: none;
+}
+
+@keyframes photoShine {
+    0%,55% {
+        transform: translateX(-130%);
+    }
+    100% {
+        transform: translateX(130%);
+    }
+}
+
+.floating-crown {
+    position: absolute;
+    top: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 75px;
+    filter: drop-shadow(0 0 25px gold);
+    animation: crownBounce 3s infinite ease-in-out;
+    z-index: 5;
+}
+
+@keyframes crownBounce {
+    0%,100% {
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -15px;
+    }
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 12px 25px;
+    border: 1px solid rgba(255,215,100,.5);
+    background: rgba(255,190,0,.09);
+    border-radius: 50px;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: 25px auto;
+    color: #bcbcbc;
+    line-height: 1.9;
+}
+
+.btn {
+    border: none;
+    padding: 16px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin: 10px;
+    transition: .3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-gold {
+    background: linear-gradient(
+        135deg,
+        #fff1a0,
+        #ffb900,
+        #c88400
+    );
+    color: #211400;
+    box-shadow: 0 10px 35px #ffb90035;
+}
+
+.btn-purple {
+    background: linear-gradient(
+        135deg,
+        #a855f7,
+        #6d28d9
+    );
+    color: white;
+    box-shadow: 0 10px 35px #a855f740;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.04);
+    filter: brightness(1.15);
+}
+
+/* SECTIONS */
+
+section {
+    padding: 110px 7%;
+    position: relative;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 65px;
+}
+
+.section-label {
+    color: var(--gold);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    margin-top: 15px;
+    line-height: 1.3;
+}
+
+.section-description {
+    max-width: 600px;
+    margin: 18px auto 0;
+    color: #aaa;
+    line-height: 1.8;
+}
+
+/* GLASS CARDS */
+
+.glass-card {
+    background: var(--glass);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 25px;
+    padding: 35px;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    transition: transform .4s, border-color .4s;
+}
+
+.glass-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255,211,107,.6);
+}
+
+.family-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.family-card {
+    text-align: center;
+}
+
+.family-icon {
+    font-size: 65px;
+    margin-bottom: 25px;
+}
+
+.family-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--gold);
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.family-card h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.family-card p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* DECLARATION */
+
+.declaration-box {
+    max-width: 950px;
+    margin: auto;
+    padding: 65px 40px;
+    text-align: center;
+    border-radius: 30px;
+    background: linear-gradient(
+        145deg,
+        rgba(255,200,50,.1),
+        rgba(110,30,200,.12)
+    );
+    border: 1px solid rgba(255,215,100,.35);
+    box-shadow: 0 0 80px rgba(255,190,0,.08);
+}
+
+.quote-icon {
+    font-size: 75px;
+    color: var(--gold);
+}
+
+.declaration-text {
+    font-size: clamp(24px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.7;
+    background: linear-gradient(
+        90deg,
+        white,
+        var(--gold),
+        white
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.declaration-author {
+    color: var(--gold);
+    margin-top: 30px;
+    letter-spacing: 3px;
+}
+
+/* STATS */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.stat {
+    text-align: center;
+    padding: 35px 15px;
+    border: 1px solid #ffffff20;
+    border-radius: 20px;
+    background: #ffffff08;
+}
+
+.stat-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(24px, 4vw, 42px);
+    color: var(--gold);
+    font-weight: 900;
+}
+
+.stat-label {
+    margin-top: 15px;
+    color: #aaa;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* ACHIEVEMENTS */
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.achievement {
+    text-align: center;
+    min-height: 245px;
+}
+
+.achievement-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.achievement h3 {
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.achievement p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* TIMELINE */
+
+.timeline {
+    max-width: 850px;
+    margin: auto;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+        var(--gold),
+        var(--purple),
+        var(--cyan)
+    );
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 75px;
+    margin-bottom: 35px;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 25px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 20px var(--gold);
+}
+
+.timeline-item h3 {
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.timeline-item p {
+    color: #bbb;
+    line-height: 1.8;
+}
+
+/* POWER SCANNER */
+
+.scanner {
+    max-width: 750px;
+    margin: auto;
+    text-align: center;
+}
+
+.scanner-display {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid var(--cyan);
+    margin: 35px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 35px;
+    font-weight: 900;
+    color: var(--cyan);
+    box-shadow:
+        0 0 30px #00ffff35,
+        inset 0 0 30px #00ffff20;
+    position: relative;
+}
+
+.scanner-display::before {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border: 2px dashed var(--cyan);
+    border-radius: 50%;
+    animation: rotateScanner 8s linear infinite;
+}
+
+@keyframes rotateScanner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.progress-track {
+    width: 100%;
+    height: 18px;
+    background: #ffffff15;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 30px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(
+        90deg,
+        var(--purple),
+        var(--cyan),
+        var(--gold)
+    );
+    box-shadow: 0 0 25px var(--cyan);
+    transition: width .12s linear;
+}
+
+.scanner-result {
+    min-height: 35px;
+    font-size: 19px;
+    color: var(--gold);
+}
+
+/* FUN ZONE */
+
+.fun-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.fun-card {
+    text-align: center;
+}
+
+.fun-card h3 {
+    color: var(--gold);
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.fun-card p {
+    color: #aaa;
+    line-height: 1.8;
+}
+
+.fun-result {
+    margin-top: 25px;
+    min-height: 45px;
+    color: var(--cyan);
+    font-weight: 700;
+    font-size: 19px;
+}
+
+/* WANTED POSTER */
+
+.wanted-poster {
+    max-width: 460px;
+    margin: auto;
+    padding: 35px;
+    border-radius: 15px;
+    background: linear-gradient(
+        145deg,
+        #e8c98b,
+        #c39b57
+    );
+    color: #36220a;
+    text-align: center;
+    box-shadow:
+        0 25px 80px #0009,
+        0 0 50px #ffb90020;
+    transform: rotate(-2deg);
+    transition: .5s;
+}
+
+.wanted-poster:hover {
+    transform: rotate(0deg) scale(1.03);
+}
+
+.wanted-title {
+    font-family: Georgia,serif;
+    font-size: 60px;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+.wanted-poster img {
+    width: 100%;
+    max-height: 340px;
+    object-fit: cover;
+    border: 7px solid #543612;
+    margin: 20px 0;
+    filter: sepia(.35);
+}
+
+.wanted-poster h2 {
+    font-family: Georgia,serif;
+    font-size: 33px;
+}
+
+.wanted-poster p {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* FINALE */
+
+.finale {
+    text-align: center;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.finale h2 {
+    font-family: 'Orbitron',sans-serif;
+    font-size: clamp(40px, 8vw, 85px);
+    color: var(--gold);
+    text-shadow: 0 0 50px #ffb90050;
+}
+
+.finale p {
+    color: #bbb;
+    font-size: 20px;
+    margin: 25px 0;
+}
+
+footer {
+    text-align: center;
+    padding: 45px 20px;
+    border-top: 1px solid #ffffff20;
+    background: #0008;
+    color: #888;
+    font-size: 13px;
+}
+
+footer strong {
+    color: var(--gold);
+}
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 45px 30px;
+    text-align: center;
+    border-radius: 30px;
+    border: 2px solid var(--gold);
+    background: linear-gradient(
+        145deg,
+        #281047,
+        #080810
+    );
+    box-shadow: 0 0 80px #a855f760;
+    animation: modalEnter .5s ease;
+}
+
+@keyframes modalEnter {
+    from {
+        transform: scale(.5) rotate(-10deg);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+.modal-box h2 {
+    color: var(--gold);
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.modal-box p {
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+/* PARTICLES */
+
+.particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1500;
+    animation: particleFly var(--duration) ease-out forwards;
+}
+
+@keyframes particleFly {
+    0% {
+        transform: translate(0,0) rotate(0deg) scale(.5);
+        opacity: 1;
+    }
+    100% {
+        transform:
+            translate(var(--x),var(--y))
+            rotate(720deg)
+            scale(1.3);
+        opacity: 0;
+    }
+}
+
+/* SCROLL ANIMATION */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+    .family-grid,
+    .achievement-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    nav .nav-links {
+        display: none;
+    }
+}
+
+@media(max-width:550px) {
+    section {
+        padding: 75px 20px;
+    }
+
+    .photo-scene {
+        width: 245px;
+        height: 315px;
+    }
+
+    .family-grid,
+    .achievement-grid,
+    .fun-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .declaration-box {
+        padding: 40px 20px;
+    }
+
+    .wanted-title {
+        font-size: 45px;
+    }
+
+    .hero-subtitle {
+        letter-spacing: 2px;
+        font-size: 11px;
+    }
+
+    .glass-card {
+        padding: 28px 22px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="universe"></canvas>
+<div class="background-glow"></div>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="logo">👑 SAHURVERSE</div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#family">Family</a>
+        <a href="#achievements">Awards</a>
+        <a href="#fun">Fun Zone</a>
+        <a href="#wanted">Wanted</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero" id="home">
+
+    <div class="eyebrow">
+        THE OFFICIAL LEGENDARY UNIVERSE
+    </div>
+
+    <h1 class="hero-title">
+        SAHUR<br>CHUBRA
+    </h1>
+
+    <p class="hero-subtitle">
+        THE MAN • THE MYTH • THE LEGEND
+    </p>
+
+    <div class="photo-scene">
+
+        <div class="photo-aura"></div>
+
+        <div class="floating-crown">👑</div>
+
+        <div class="photo-float">
+            <div class="photo-card" id="photoCard">
+                <img src="sahur.jpg" alt="Sahur Chubra">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="hero-badge">
+        ✦ GHOSE PARA LEGEND ✦
+    </div>
+
+    <p class="hero-description">
+        Some people are born ordinary.
+        Some become famous.
+        But one legendary human was born
+        to become the ultimate Bhaipo
+        of the universe.
+    </p>
+
+    <div>
+        <button class="btn btn-gold" onclick="openModal()">
+            🚨 DO NOT CLICK
+        </button>
+
+        <button class="btn btn-purple"
+        onclick="document.getElementById('family').scrollIntoView({behavior:'smooth'})">
+            EXPLORE THE LEGEND ↓
+        </button>
+    </div>
+
+</header>
+
+<!-- FAMILY -->
+
+<section id="family" class="reveal">
+
+    <div class="section-heading">
+
+        <div class="section-label">
+            THE ROYAL BLOODLINE
+        </div>
+
+        <h2 class="section-title">
+            👑 THE LEGENDARY FAMILY
+        </h2>
+
+        <p class="section-description">
+            Every great legend has an extraordinary
+            family history.
+        </p>
+
+    </div>
+
+    <div class="family-grid">
+
+        <div class="glass-card family-card">
+            <div class="family-icon">🗿</div>
+            <h3>THE FATHER</h3>
+            <h2>AKASH</h2>
+            <p>The Legendary Father</p>
+        </div>
+
+        <div class="glass-card family-card">
+            <div class="family-icon">👑</div>
+            <h3>THE SUPERSTAR</h3>
+            <h2>SAHUR CHUBRA</h2>
+            <p>The One & Only Legend</p>
+        </div>
+
+        <div class="glass-card family-card">
+            <div class="family-icon">💃</div>
+            <h3>THE MOTHER</h3>
+            <h2>PRIANKA CHOPRA</h2>
+            <p>The Bollywood Queen</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DECLARATION -->
+
+<section class="reveal">
+
+    <div class="section-heading">
+        <div class="section-label">HISTORICAL WORDS</div>
+        <h2 class="section-title">
+            📜 OFFICIAL DECLARATION
+        </h2>
+    </div>
+
+    <div class="declaration-box">
+
+        <div class="quote-icon">❝</div>
+
+        <p class="declaration-text">
+            ami Akash er ekmatro sontan,<br>
+            sobar bhaipo,<br>
+            ghose parar jamai
+        </p>
+
+        <div class="declaration-author">
+            — SAHUR CHUBRA, 2026
+        </div>
+
+        <br>
+
+        <button class="btn btn-gold"
+        onclick="speakDeclaration()">
+            🔊 HEAR THE LEGEND
+        </button>
+
+    </div>
+
+</section>
+
+<!-- STATISTICS -->
+
+<section class="reveal">
+
+    <div class="section-heading">
+        <div class="section-label">LEGENDARY DATA</div>
+        <h2 class="section-title">
+            ⚡ SAHUR BY NUMBERS
+        </h2>
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat">
+            <div class="stat-number">999+</div>
+            <div class="stat-label">SWAG LEVEL</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">BHAIPO ENERGY</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">LEGEND STATUS</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">1</div>
+            <div class="stat-label">GHOSE PARA JAMAI</div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ACHIEVEMENTS -->
+
+<section id="achievements" class="reveal">
+
+    <div class="section-heading">
+        <div class="section-label">HALL OF FAME</div>
+        <h2 class="section-title">
+            🏆 LEGENDARY ACHIEVEMENTS
+        </h2>
+    </div>
+
+    <div class="achievement-grid">
+
+        <div class="glass-card achievement">
+            <div class="achievement-icon">👑</div>
+            <h3>ROYAL BLOOD</h3>
+            <p>Akash er ekmatro sontan.</p>
+        </div>
+
+        <div class="glass-card achievement">
+            <div class="achievement-icon">😎</div>
+            <h3>UNIVERSAL BHAIPO</h3>
+            <p>Sobar priyo bhaipo.</p>
+        </div>
+
+        <div class="glass-card achievement">
+            <div class="achievement-icon">💍</div>
+            <h3>GHOSE PARA JAMAI</h3>
+            <p>The legendary title holder.</p>
+        </div>
+
+        <div class="glass-card achievement">
+            <div class="achievement-icon">🔥</div>
+            <h3>UNLIMITED SWAG</h3>
+            <p>Swag meter officially broken.</p>
+        </div>
+
+        <div class="glass-card achievement">
+            <div class="achievement-icon">🗿</div>
+            <h3>SIGMA LEGEND</h3>
+            <p>Certified legendary personality.</p>
+        </div>
+
+        <div class="glass-card achievement">
+            <div class="achievement-icon">😂</div>
+            <h3>COMEDY KING</h3>
+            <p>Entertainment level maximum.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section class="reveal">
+
+    <div class="section-heading">
+        <div class="section-label">THE UNTOLD STORY</div>
+        <h2 class="section-title">
+            📜 THE LEGENDARY TIMELINE
+        </h2>
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <div class="glass-card">
+                <h3>🌟 CHAPTER 01 — THE BEGINNING</h3>
+                <p>
+                    Ekdin prithibite ek notun legend-er
+                    agomon holo. Naam tar Sahur Chubra.
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="glass-card">
+                <h3>👑 CHAPTER 02 — THE ROYAL IDENTITY</h3>
+                <p>
+                    Sahur nijeke declare korlo
+                    Akash er ekmatro sontan.
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="glass-card">
+                <h3>😎 CHAPTER 03 — UNIVERSAL BHAIPO</h3>
+                <p>
+                    Tarpor Sahur hoye uthlo
+                    sobar legendary bhaipo.
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="glass-card">
+                <h3>💍 CHAPTER 04 — GHOSE PARA</h3>
+                <p>
+                    Oboseshe Sahur peye gelo tar
+                    legendary title:
+                    Ghose Parar Jamai!
+                </p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="glass-card">
+                <h3>🔥 CHAPTER 05 — THE LEGEND CONTINUES</h3>
+                <p>
+                    Sahur Chubra ekhon sudhu
+                    ekta naam noy...
+                    Ekta emotion!
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- POWER SCANNER -->
+
+<section class="reveal">
+
+    <div class="section-heading">
+        <div class="section-label">ADVANCED TECHNOLOGY</div>
+        <h2 class="section-title">
+            ⚡ LEGENDARY POWER SCANNER
+        </h2>
+    </div>
+
+    <div class="glass-card scanner">
+
+        <h3>SAHUR POWER DETECTOR 3000</h3>
+
+        <div class="scanner-display" id="scannerNumber">
+            0%
+        </div>
+
+        <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <button class="btn btn-gold"
+        id="scanButton"
+        onclick="startScanner()">
+            ⚡ START SCANNING
+        </button>
+
+        <div class="scanner-result" id="scannerResult">
+            System Ready...
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FUN ZONE -->
+
+<section id="fun" class="reveal">
+
+    <div class="section-heading">
+        <div class="section-label">INTERACTIVE EXPERIENCE</div>
+        <h2 class="section-title">
+            😂 THE ULTIMATE FUN ZONE
+        </h2>
+    </div>
+
+    <div class="fun-grid">
+
+        <div class="glass-card fun-card">
+
+            <h3>🔮 SECRET PROPHECY</h3>
+
+            <p>
+                Discover a mysterious prediction
+                about Sahur Chubra.
+            </p>
+
+            <button class="btn btn-purple"
+            onclick="secretPrediction()">
+                REVEAL PROPHECY
+            </button>
+
+            <div class="fun-result" id="predictionResult"></div>
+
+        </div>
+
+        <div class="glass-card fun-card">
+
+            <h3>😂 RANDOM DIALOGUE</h3>
+
+            <p>
+                Generate a legendary
+                Sahur Chubra dialogue.
+            </p>
+
+            <button class="btn btn-purple"
+            onclick="randomDialogue()">
+                GENERATE DIALOGUE
+            </button>
+
+            <div class="fun-result" id="dialogueResult"></div>
+
+        </div>
+
+        <div class="glass-card fun-card">
+
+            <h3>🎉 PARTY MODE</h3>
+
+            <p>
+                Activate the ultimate
+                legendary celebration.
+            </p>
+
+            <button class="btn btn-gold"
+            onclick="partyMode()">
+                ACTIVATE PARTY
+            </button>
+
+            <div class="fun-result" id="partyResult"></div>
+
+        </div>
+
+        <div class="glass-card fun-card">
+
+            <h3>🚨 BREAKING NEWS</h3>
+
+            <p>
+                Read the latest fictional
+                news from Sahurverse.
+            </p>
+
+            <button class="btn btn-gold"
+            onclick="breakingNews()">
+                READ BREAKING NEWS
+            </button>
+
+            <div class="fun-result" id="newsResult"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- WANTED POSTER -->
+
+<section id="wanted" class="reveal">
+
+    <div class="section-heading">
+        <div class="section-label">TOP SECRET DOCUMENT</div>
+        <h2 class="section-title">
+            🚨 THE LEGENDARY WANTED POSTER
+        </h2>
+    </div>
+
+    <div class="wanted-poster">
+
+        <div class="wanted-title">
+            WANTED
+        </div>
+
+        <p>FOR EXCESSIVE LEGENDARY SWAG</p>
+
+        <img src="sahur.jpg" alt="Funny Sahur Wanted Poster">
+
+        <h2>SAHUR CHUBRA</h2>
+
+        <p>ALIAS: GHOSE PARAR JAMAI</p>
+
+        <p>REWARD: 999999 LEGEND POINTS</p>
+
+        <p>😂 APPROACH WITH LAUGHTER 😂</p>
+
+    </div>
+
+</section>
+
+<!-- GRAND FINALE -->
+
+<section class="finale reveal">
+
+    <div class="section-label">
+        THE FINAL CHAPTER
+    </div>
+
+    <h2>
+        SAHUR<br>CHUBRA
+    </h2>
+
+    <p>
+        Ekta naam noy... Ekta Emotion! 👑
+    </p>
+
+    <p>
+        THE LEGEND OF GHOSE PARA
+    </p>
+
+    <button class="btn btn-gold"
+    onclick="grandFinale()">
+        👑 CELEBRATE THE LEGEND
+    </button>
+
+    <button class="btn btn-purple"
+    onclick="shareWebsite()">
+        📤 SHARE THE LEGEND
+    </button>
+
+</section>
+
+<footer>
+
+    <p>
+        © 2026 SAHURVERSE
+    </p>
+
+    <br>
+
+    <p>
+        Made with 😂 for
+        <strong>SAHUR CHUBRA</strong>
+    </p>
+
+    <br>
+
+    <p>
+        THE MAN • THE MYTH • THE LEGEND
+    </p>
+
+</footer>
+
+<!-- SECRET MODAL -->
+
+<div class="modal" id="secretModal"
+role="dialog"
+aria-modal="true"
+aria-labelledby="modalTitle">
+
+    <div class="modal-box">
+
+        <div style="font-size:65px">🚨👑🚨</div>
+
+        <h2 id="modalTitle">BREAKING NEWS!</h2>
+
+        <p>
+            Congratulations! 🎉
+            <br><br>
+            You have officially entered
+            the legendary universe of
+            <b>SAHUR CHUBRA!</b>
+            <br><br>
+            😂 GHOSE PARAR JAMAI SUPREMACY!
+        </p>
+
+        <br>
+
+        <button class="btn btn-gold"
+        onclick="closeModal()">
+            😂 CLOSE
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+/* ==================================
+   CINEMATIC UNIVERSE PARTICLES
+================================== */
+
+const canvas = document.getElementById("universe");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+let canvasWidth = 0;
+let canvasHeight = 0;
+
+const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
+
+function resizeUniverse() {
+
+    const dpr = Math.min(
+        window.devicePixelRatio || 1,
+        2
+    );
+
+    canvasWidth = window.innerWidth;
+    canvasHeight = window.innerHeight;
+
+    canvas.width = Math.floor(canvasWidth * dpr);
+    canvas.height = Math.floor(canvasHeight * dpr);
+
+    canvas.style.width = canvasWidth + "px";
+    canvas.style.height = canvasHeight + "px";
+
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    stars = [];
+
+    const count = Math.min(
+        180,
+        Math.floor(canvasWidth * canvasHeight / 4500)
+    );
+
+    for(let i=0;i<count;i++) {
+
+        stars.push({
+            x: Math.random() * canvasWidth,
+            y: Math.random() * canvasHeight,
+            size: Math.random() * 1.8 + .3,
+            speed: Math.random() * .35 + .08,
+            alpha: Math.random() * .8 + .2,
+            phase: Math.random() * Math.PI * 2
+        });
+
+    }
+}
+
+function animateUniverse(time=0) {
+
+    ctx.clearRect(
+        0,0,
+        canvasWidth,
+        canvasHeight
+    );
+
+    stars.forEach(star => {
+
+        const twinkle = .5 + .5 * Math.sin(
+            time * .0015 + star.phase
+        );
+
+        ctx.beginPath();
+
+        ctx.arc(
+            star.x,
+            star.y,
+            star.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            `rgba(255,255,255,${star.alpha * twinkle})`;
+
+        ctx.fill();
+
+        if(!reduceMotion) {
+            star.y += star.speed;
+        }
+
+        if(star.y > canvasHeight) {
+            star.y = 0;
+            star.x = Math.random() * canvasWidth;
+        }
+
+    });
+
+    if(!reduceMotion) {
+        requestAnimationFrame(animateUniverse);
+    }
+}
+
+window.addEventListener("resize",resizeUniverse);
+
+resizeUniverse();
+animateUniverse();
+
+/* ==================================
+   REALISTIC 3D PHOTO TILT
+================================== */
+
+const photoCard = document.getElementById("photoCard");
+
+photoCard.addEventListener("pointermove", e => {
+
+    if(e.pointerType === "touch") return;
+    if(reduceMotion) return;
+
+    const rect = photoCard.getBoundingClientRect();
+
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    const rotateY = (x - .5) * 30;
+    const rotateX = -(y - .5) * 25;
+
+    photoCard.style.transform =
+        `rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)
+         scale(1.04)`;
+
+});
+
+photoCard.addEventListener("pointerleave",() => {
+    photoCard.style.transform = "";
+});
+
+/* ==================================
+   MODAL
+================================== */
+
+function openModal() {
+
+    document.getElementById("secretModal")
+        .classList.add("active");
+
+    explodeConfetti(70);
+
+}
+
+function closeModal() {
+
+    document.getElementById("secretModal")
+        .classList.remove("active");
+
+}
+
+document.getElementById("secretModal")
+.addEventListener("click",e => {
+
+    if(e.target.id === "secretModal") {
+        closeModal();
+    }
+
+});
+
+document.addEventListener("keydown",e => {
+
+    if(e.key === "Escape") {
+        closeModal();
+    }
+
+});
+
+/* ==================================
+   VOICE DECLARATION
+================================== */
+
+function speakDeclaration() {
+
+    if(!("speechSynthesis" in window)) {
+        alert("Voice feature not supported.");
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(
+        "Ami Akash er ekmatro sontan, sobar bhaipo, ghose parar jamai"
+    );
+
+    speech.rate = .85;
+    speech.pitch = 1.1;
+    speech.volume = 1;
+
+    speechSynthesis.speak(speech);
+
+    explodeConfetti(30);
+}
+
+/* ==================================
+   POWER SCANNER
+================================== */
+
+let scanning = false;
+
+function startScanner() {
+
+    if(scanning) return;
+
+    scanning = true;
+
+    const number = document.getElementById(
+        "scannerNumber"
+    );
+
+    const bar = document.getElementById(
+        "progressBar"
+    );
+
+    const result = document.getElementById(
+        "scannerResult"
+    );
+
+    const button = document.getElementById(
+        "scanButton"
+    );
+
+    button.disabled = true;
+
+    result.textContent = "Scanning legendary energy...";
+
+    let progress = 0;
+
+    const timer = setInterval(() => {
+
+        progress += 2;
+
+        number.textContent = progress + "%";
+        bar.style.width = progress + "%";
+
+        if(progress >= 100) {
+
+            clearInterval(timer);
+
+            setTimeout(() => {
+
+                number.textContent = "∞";
+
+                result.textContent =
+                    "👑 ERROR! SAHUR POWER IS INFINITE!";
+
+                explodeConfetti(80);
+
+                scanning = false;
+                button.disabled = false;
+
+            },500);
+
+        }
+
+    },45);
+}
+
+/* ==================================
+   SECRET PREDICTIONS
+================================== */
+
+function secretPrediction() {
+
+    const predictions = [
+        "👑 Sahur will become King of Ghose Para!",
+        "😂 Universal Bhaipo Award incoming!",
+        "🔥 Legendary Swag will reach infinity!",
+        "🗿 Sigma energy detected!",
+        "💍 Ghose Para Jamai status confirmed!",
+        "🚀 Sahurverse expansion coming soon!"
+    ];
+
+    const random = Math.floor(
+        Math.random() * predictions.length
+    );
+
+    document.getElementById(
+        "predictionResult"
+    ).textContent = predictions[random];
+
+    explodeConfetti(25);
+}
+
+/* ==================================
+   RANDOM DIALOGUES
+================================== */
+
+function randomDialogue() {
+
+    const dialogues = [
+        "😂 Ami Akash er ekmatro sontan!",
+        "👑 Ami Ghose Parar Jamai!",
+        "😎 Ami Sobar Bhaipo!",
+        "🔥 Sahur Chubra Never Loses!",
+        "🗿 Legend Never Dies!",
+        "💀 Sahur Chubra Supremacy!",
+        "⚡ Amar swag meter unlimited!"
+    ];
+
+    const random = Math.floor(
+        Math.random() * dialogues.length
+    );
+
+    document.getElementById(
+        "dialogueResult"
+    ).textContent = dialogues[random];
+
+    explodeConfetti(20);
+}
+
+/* ==================================
+   BREAKING NEWS
+================================== */
+
+function breakingNews() {
+
+    const news = [
+        "🚨 Sahur declared King of Ghose Para!",
+        "😂 Scientists unable to measure Sahur's swag!",
+        "👑 Universal Bhaipo title officially unlocked!",
+        "🔥 Sahurverse reaches legendary status!",
+        "🗿 Sigma meter crashes after detecting Sahur!"
+    ];
+
+    const random = Math.floor(
+        Math.random() * news.length
+    );
+
+    document.getElementById(
+        "newsResult"
+    ).textContent = news[random];
+
+    explodeConfetti(30);
+}
+
+/* ==================================
+   CINEMATIC CONFETTI EXPLOSION
+================================== */
+
+function explodeConfetti(amount=50) {
+
+    if(reduceMotion) return;
+
+    const emojis = [
+        "👑","😂","🔥","🎉",
+        "✨","😎","💎","🏆"
+    ];
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    for(let i=0;i<amount;i++) {
+
+        const particle = document.createElement("div");
+
+        particle.className = "particle";
+
+        particle.textContent =
+            emojis[Math.floor(Math.random()*emojis.length)];
+
+        const angle = Math.random() * Math.PI * 2;
+
+        const distance = 100 + Math.random() * 450;
+
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+
+        const duration = 1.5 + Math.random() * 2;
+
+        particle.style.left = centerX + "px";
+        particle.style.top = centerY + "px";
+
+        particle.style.fontSize =
+            (15 + Math.random()*22) + "px";
+
+        particle.style.setProperty(
+            "--x",x+"px"
+        );
+
+        particle.style.setProperty(
+            "--y",y+"px"
+        );
+
+        particle.style.setProperty(
+            "--duration",duration+"s"
+        );
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        },duration*1000+100);
+
+    }
+}
+
+/* ==================================
+   PARTY MODE
+================================== */
+
+let partyActive = false;
+
+function partyMode() {
+
+    if(partyActive) return;
+
+    partyActive = true;
+
+    document.getElementById(
+        "partyResult"
+    ).textContent = "🎉 SAHUR PARTY ACTIVATED!";
+
+    const style = document.createElement("style");
+
+    style.textContent = `
+        @keyframes sahurParty {
+            0% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+    `;
+
+    document.head.appendChild(style);
+
+    document.querySelector(
+        ".background-glow"
+    ).style.animation =
+        "sahurParty .7s linear infinite";
+
+    explodeConfetti(100);
+
+    setTimeout(() => {
+
+        document.querySelector(
+            ".background-glow"
+        ).style.animation = "";
+
+        style.remove();
+
+        partyActive = false;
+
+        document.getElementById(
+            "partyResult"
+        ).textContent = "👑 PARTY COMPLETE!";
+
+    },6000);
+}
+
+/* ==================================
+   GRAND FINALE
+================================== */
+
+function grandFinale() {
+
+    explodeConfetti(120);
+
+    if(navigator.vibrate) {
+        navigator.vibrate([100,50,100]);
+    }
+
+}
+
+/* ==================================
+   SHARE WEBSITE
+================================== */
+
+async function shareWebsite() {
+
+    const data = {
+        title: "Sahur Chubra 👑",
+        text: "Meet the legendary Sahur Chubra 😂",
+        url: window.location.href
+    };
+
+    if(navigator.share) {
+
+        try {
+            await navigator.share(data);
+        } catch(error) {}
+
+    } else {
+
+        try {
+
+            await navigator.clipboard.writeText(
+                window.location.href
+            );
+
+            alert("Website link copied! 👑");
+
+        } catch(error) {
+
+            alert("Copy the URL from your browser.");
+
+        }
+
+    }
+}
+
+/* ==================================
+   SMOOTH SCROLL REVEAL
+================================== */
+
+const revealElements = document.querySelectorAll(
+    ".reveal"
+);
+
+if("IntersectionObserver" in window) {
+
+    const observer = new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "visible"
+                    );
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+        {
+            threshold: .08
+        }
+    );
+
+    revealElements.forEach(element => {
+        observer.observe(element);
+    });
+
+} else {
+
+    revealElements.forEach(element => {
+        element.classList.add("visible");
+    });
+
+}
+
+</script>
+
+</body>
+</html>
